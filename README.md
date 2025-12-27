@@ -1,16 +1,42 @@
-# React + Vite
+# 📝 Todo App (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and clean Todo application built using **React** and **Vite**.  
+This app helps you add, edit, delete, and manage your daily tasks easily.
 
-Currently, two official plugins are available:
+👉 **Click on the link on the above button to view the app.**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 📌 How to Use the App
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### ➕ Add Todo
+1. Under **Add Todo**, type your task in the input box.
+2. Click the **Save** button.
+3. The todo will be added below under **Your Todos**.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### ✅ Mark Todo as Finished
+- If you are done with a task, check the checkbox next to the todo under **Your Todos**.
+- If you are not done, do nothing.
+
+---
+
+### ✏️ Edit Todo
+1. Click the **Edit icon** next to the todo under **Your Todos**.
+2. The selected todo will appear in the input field above.
+3. Update the task and click **Save** again.
+4. The todo will be updated successfully.
+
+---
+
+### 🗑️ Delete Todo
+1. Select the todo you want to delete under **Your Todos**.
+2. Click the **Delete icon** to remove it.
+
+---
+
+### 👁️ Show Finished
+- When **Show Finished** is checked, both completed and incomplete todos are shown.
+- When unchecked, only unfinished (remaining) todos are displayed.
+

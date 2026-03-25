@@ -3,8 +3,6 @@
 A simple and clean Todo application built using **React** and **Vite**.  
 This app helps you add, edit, delete, and manage your daily tasks easily.
 
-👉 **Click on the link on the above button to view the app.**
-
 ---
 
 ## 📌 How to Use the App

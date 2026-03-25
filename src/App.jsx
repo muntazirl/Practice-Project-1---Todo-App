@@ -72,7 +72,7 @@ function App() {
     <>
     <Navbar/>
       <div className="md:container rounded-xl mx-3 my-5 md:mx-auto bg-violet-100 p-5 min-h-[60vh] md:w-1/2 w-full">
-      <h1 className='font-bold md:text-center '>iTask - Manage all your Todos at one place</h1>
+      <h1 className='font-bold md:text-center '>DoneKart - Manage all your Todos at one place</h1>
         <div className="addTodo">
           <h2 className='text-lg font-bold'>Add a Todo</h2>
           <div className="flex">

@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react'
+import { useState,useEffect,useRef } from 'react'
 import Navbar from './components/Navbar'
 import { v4 as uuidv4 } from 'uuid';
 import { FaRegEdit } from "react-icons/fa";
@@ -18,6 +18,7 @@ function App() {
   const [todo, settodo] = useState("")
   const [todos, settodos] = useState([])
   const [showfinished, setshowfinished] = useState(true)
+  const isFirstRender = useRef(true)
 
   useEffect(() => {
     let todstring=localStorage.getItem("todos")
@@ -27,6 +28,16 @@ function App() {
       settodos(tods)
     }
   }, [])
+
+  // Persist todos whenever they change (skip the very first render so we
+  // don't overwrite saved data before the load effect above runs)
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false
+      return
+    }
+    localStorage.setItem("todos", JSON.stringify(todos))
+  }, [todos])
 
   const togglefinished = (e) => {
     setshowfinished(!showfinished)
@@ -41,21 +52,18 @@ function App() {
       return item.id!==id
     })
     settodos(newtodos)
-    savetols()
   }
   const  handledelete = (e,id)=>{
     let newtodos=todos.filter(item=>{
       return item.id!==id
     })
     settodos(newtodos)
-    savetols()
     toast('🗑️ Task deleted!', toastOptions)
   }
   const  handleadd = ()=>{
     {}
     settodos([...todos, {id:uuidv4() ,todo, isCompleted:false}])
     settodo("")
-    savetols()
     toast('✅ Task added!', toastOptions)
   }
   const  handlechange = (e)=>{
@@ -70,13 +78,7 @@ function App() {
     let newtodos=[...todos]
     newtodos[index].isCompleted=!newtodos[index].isCompleted
     settodos(newtodos);
-    savetols()
   }
-
-  const savetols = () => {
-    localStorage.setItem("todos", JSON.stringify(todos))
-  }
-  
 
 
   return (

@@ -3,7 +3,16 @@ import Navbar from './components/Navbar'
 import { v4 as uuidv4 } from 'uuid';
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+// Shared purple styling for all toasts
+const toastOptions = {
+  position: "top-right",
+  autoClose: 2000,
+  style: { background: "#5b21b6", color: "#ffffff" },   // violet-800
+  progressStyle: { background: "#c4b5fd" },             // violet-300
+};
 
 function App() {
   const [todo, settodo] = useState("")
@@ -40,12 +49,14 @@ function App() {
     })
     settodos(newtodos)
     savetols()
+    toast('🗑️ Task deleted!', toastOptions)
   }
   const  handleadd = ()=>{
     {}
     settodos([...todos, {id:uuidv4() ,todo, isCompleted:false}])
     settodo("")
     savetols()
+    toast('✅ Task added!', toastOptions)
   }
   const  handlechange = (e)=>{
     settodo(e.target.value)
@@ -71,7 +82,8 @@ function App() {
   return (
     <>
     <Navbar/>
-      <div className="md:container rounded-xl mx-3 my-5 md:mx-auto bg-violet-100 p-5 min-h-[60vh] md:w-1/2 w-full">
+    <ToastContainer />
+      <div className="md:container rounded-xl mx-3 my-5 md:mx-auto bg-violet-100 p-5 min-h-[60vh] md:w-1/2 w-auto">
       <h1 className='font-bold md:text-center '>DoneKart - Manage all your Todos at one place</h1>
         <div className="addTodo">
           <h2 className='text-lg font-bold'>Add a Todo</h2>
@@ -81,15 +93,15 @@ function App() {
           <button onClick={handleadd} disabled={todo.length<3} className='bg-violet-800  disabled:bg-violet-950 mx-3 py-1 text-sm font-bold hover:bg-violet-900 cursor-pointer text-white rounded-md w-1/4'>Add</button>
         </div>
           </div>
-        <input type="checkbox" onChange={togglefinished} checked={showfinished} className='my-5'/> Show finished
+        <input type="checkbox" onChange={togglefinished}  className='my-5'/> Show remaining tasks
        <h2 className='text-lg font-bold'>Your Todos</h2> 
        <div className="Todos">
         {todos.map(item=>{
 
-        return (showfinished || !item.isCompleted)&& <div key={item.id} className="todo flex w-1/2 justify-between my-4">
+        return (showfinished || !item.isCompleted)&& <div key={item.id} className="todo flex w-full md:w-3/4 justify-between my-4">
           <div className='flex gap-5 w-full'>
 
-          <input  type="checkbox" onChange={handlecheckbox} value={item.isCompleted} name={item.id}/>
+          <input  type="checkbox" onChange={handlecheckbox} checked={item.isCompleted} name={item.id}/>
           <div
   className={`w-full text-lg md:whitespace-normal ${
     item.isCompleted ? "line-through text-gray-400" : ""
